@@ -46,7 +46,7 @@
 }
 
 #a {
-    animation: Circle 4s linear 0;
+    animation: Circle 4s linear 1ms;
 }
 #b {
     animation: Circle 4s linear 0.15s;
