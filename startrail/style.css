@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    background-color: #19193A;
+}
+
+canvas#startrail-canvas {
+    display: block;
+    width: 100%;
+    margin: auto;
+}
