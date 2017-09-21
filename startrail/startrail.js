@@ -61,7 +61,7 @@
                     }
                     ctx.lineWidth = trail.lineWidth;
                     // ctx.shadowBlur = trail.lineWidth * 2;
-                    ctx.strokeStyle = `rgb(${trail.color.r}, ${trail.color.g}, ${trail.color.b})`;
+                    ctx.strokeStyle = "rgb(" + trail.color.r + ", " + trail.color.g + ", " + trail.color.b + ")";
                     // ctx.shadowColor = `rgba(${trail.color.r}, ${trail.color.g}, ${trail.color.b}, ${0.5})`;
                     ctx.beginPath();
                     ctx.arc(0, 0, trail.radius, rad(startAngle), rad(endAngle));
@@ -86,7 +86,7 @@
                     }
                     ctx.lineWidth = trail.lineWidth;
                     // ctx.shadowBlur = trail.lineWidth * 2;
-                    ctx.strokeStyle = `rgb(${trail.color.r}, ${trail.color.g}, ${trail.color.b})`;
+                    ctx.strokeStyle = "rgb(" + trail.color.r + ", " + trail.color.g + ", " + trail.color.b + ")";
                     // ctx.shadowColor = `rgba(${trail.color.r}, ${trail.color.g}, ${trail.color.b}, ${0.5})`;
                     ctx.beginPath();
                     ctx.arc(0, 0, trail.radius, rad(startAngle), rad(endAngle));
