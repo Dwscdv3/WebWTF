@@ -78,7 +78,7 @@
                 var startAngle, endAngle;
                 trails.forEach(function (trail) {
                     if ((timestamp - startTime) / 1000 * degreesPerSecond >= MaxArcDeg) {
-                        startAngle = trail.angle;
+                        startAngle = trail.angle + ((timestamp - startTime) / 1000 * degreesPerSecond) - MaxArcDeg;
                         endAngle = startAngle + MaxArcDeg;
                     } else {
                         startAngle = trail.angle;
