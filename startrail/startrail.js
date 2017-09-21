@@ -39,25 +39,24 @@
 
             var startTime = null;
             var lastTime = 0;
+            var rotateTime = null;
 
             function redraw(timestamp) {
                 if (startTime === null) {
                     startTime = timestamp;
                 }
                 var startAngle, endAngle;
-                if ((timestamp - startTime) / 1000 * degreesPerSecond >= MaxArcDeg) {
-                    ctx.rotate(rad((timestamp - lastTime) / 1000 * degreesPerSecond));
-                }
                 ctx.clearRect(
                     -Math.max(width, height) * Math.SQRT2,
                     -Math.max(width, height) * Math.SQRT2,
                     Math.max(width, height) * Math.SQRT2 * 2,
                     Math.max(width, height) * Math.SQRT2 * 2);
                 trails.forEach(function (trail) {
-                    startAngle = trail.angle;
                     if ((timestamp - startTime) / 1000 * degreesPerSecond >= MaxArcDeg) {
+                        startAngle = trail.angle + ((timestamp - startTime) / 1000 * degreesPerSecond) - MaxArcDeg;
                         endAngle = startAngle + MaxArcDeg;
                     } else {
+                        startAngle = trail.angle;
                         endAngle = startAngle + (timestamp - startTime) / 1000 * degreesPerSecond;
                     }
                     ctx.lineWidth = trail.lineWidth;
@@ -65,12 +64,7 @@
                     ctx.strokeStyle = `rgb(${trail.color.r}, ${trail.color.g}, ${trail.color.b})`;
                     // ctx.shadowColor = `rgba(${trail.color.r}, ${trail.color.g}, ${trail.color.b}, ${0.5})`;
                     ctx.beginPath();
-                    ctx.arc(
-                        0,
-                        0,
-                        trail.radius,
-                        rad(startAngle),
-                        rad(endAngle));
+                    ctx.arc(0, 0, trail.radius, rad(startAngle), rad(endAngle));
                     ctx.stroke();
                 }, this);
                 lastTime = timestamp;
@@ -82,15 +76,12 @@
                     startTime = timestamp;
                 }
                 var startAngle, endAngle;
-                if ((timestamp - startTime) / 1000 * degreesPerSecond >= MaxArcDeg) {
-                    ctx.rotate(rad((timestamp - lastTime) / 1000 * degreesPerSecond));
-                    endAngle = startAngle + MaxArcDeg;
-                }
                 trails.forEach(function (trail) {
-                    startAngle = trail.angle;
                     if ((timestamp - startTime) / 1000 * degreesPerSecond >= MaxArcDeg) {
+                        startAngle = trail.angle;
                         endAngle = startAngle + MaxArcDeg;
                     } else {
+                        startAngle = trail.angle;
                         endAngle = startAngle + (timestamp - startTime) / 1000 * degreesPerSecond;
                     }
                     ctx.lineWidth = trail.lineWidth;
@@ -98,12 +89,7 @@
                     ctx.strokeStyle = `rgb(${trail.color.r}, ${trail.color.g}, ${trail.color.b})`;
                     // ctx.shadowColor = `rgba(${trail.color.r}, ${trail.color.g}, ${trail.color.b}, ${0.5})`;
                     ctx.beginPath();
-                    ctx.arc(
-                        0,
-                        0,
-                        trail.radius,
-                        rad(startAngle),
-                        rad(endAngle));
+                    ctx.arc(0, 0, trail.radius, rad(startAngle), rad(endAngle));
                     ctx.stroke();
                 }, this);
                 lastTime = timestamp;
