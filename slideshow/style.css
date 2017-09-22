@@ -1,0 +1,70 @@
+.slideshow {
+    position: relative;
+    overflow: hidden;
+}
+
+.slideshow>.slideshow-scenes {
+    display: flex;
+    width: 1000%;
+    height: 100%;
+    transition: margin 0.5s;
+}
+
+.slideshow>.slideshow-scenes>* {
+    width: 10%;
+    height: 100%;
+}
+
+.slideshow>.slideshow-control {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0;
+    z-index: 1;
+}
+
+.slideshow>.slideshow-control>.slideshow-control-segment {
+    display: inline-block;
+    margin: 1rem;
+    width: 4rem;
+    height: 0.2rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    background-clip: content-box;
+    box-shadow: 0 0 0.1rem white;
+}
+
+.slideshow>.slideshow-control>.slideshow-control-segment.active {
+    background-color: rgba(127, 127, 127, 0.8);
+}
+
+.slideshow>.slideshow-control>.slideshow-control-segment>.slideshow-control-segment-fill {
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* Page wide rules */
+
+body {
+    margin: 0;
+}
+
+.slideshow {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.slideshow>.slideshow-scenes>*:not(.slideshow-control) {
+    font-size: 50vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideshow>.slideshow-scenes>*:nth-child(2) {
+    background-color: black;
+    color: white;
+}
