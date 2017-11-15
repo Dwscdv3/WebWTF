@@ -1,7 +1,7 @@
 (function () {
     function canvasMode() {
         const MSAA = 1;
-        const MaxArcDeg = 144;
+        const MaxArcDeg = 108;
 
         var canvas = document.getElementById("startrail-canvas");
         if (canvas instanceof HTMLCanvasElement) {
@@ -21,9 +21,11 @@
             var trails = [];
             for (var i = 0; i < trailCount; i++) {
                 var randColor = Math.floor(Math.random() * 64) + 160;
+                var x = Math.random() * width - (width / 2);
+                var y = Math.random() * height - (height / 2);
                 trails.push({
-                    radius: Math.random() * Math.max(width / 2, height / 2) * Math.SQRT2,
-                    angle: Math.random() * 360,
+                    radius: Math.sqrt(x * x + y * y),
+                    angle: deg(Math.atan2(y, x)),
                     lineWidth: Math.random() * (maxLineWidth - minLineWidth) + minLineWidth,
                     color: {
                         r: randColor,
@@ -46,9 +48,7 @@
                     startTime = timestamp;
                 }
                 var startAngle, endAngle;
-                ctx.clearRect(
-                    -Math.max(width, height) * Math.SQRT2,
-                    -Math.max(width, height) * Math.SQRT2,
+                ctx.clearRect(-Math.max(width, height) * Math.SQRT2, -Math.max(width, height) * Math.SQRT2,
                     Math.max(width, height) * Math.SQRT2 * 2,
                     Math.max(width, height) * Math.SQRT2 * 2);
                 trails.forEach(function (trail) {
@@ -99,6 +99,10 @@
 
             function rad(deg) {
                 return deg * Math.PI / 180;
+            }
+
+            function deg(rad) {
+                return rad * 180 / Math.PI;
             }
         }
     }
