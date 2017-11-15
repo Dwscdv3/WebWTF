@@ -1,0 +1,192 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    --header-width: 4.5rem;
+    --side-link-padding: 0.5rem;
+    --main-color: #f90;
+}
+
+body {
+    margin: 0;
+    margin-left: 5.5rem;
+    margin-left: calc(var(--header-width) + var(--side-link-padding) * 2);
+    background-image: url(Firedoge.png);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: contain;
+    font-family: "微软雅黑", SimHei, sans-serif;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 5.5rem;
+    width: calc(var(--header-width) + var(--side-link-padding) * 2);
+    height: 100%;
+    background-color: black;
+    color: #f90;
+    color: var(--main-color);
+    text-align: center;
+    font-size: 1.5rem;
+    z-index: 1;
+}
+
+header img {
+    width: 4.5rem;
+    width: var(--header-width);
+}
+
+header a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+header>nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header img,
+header>nav a {
+    padding: 0.5rem;
+    padding: var(--side-link-padding);
+}
+
+header>nav>ul>li>.dropdown {
+    margin-left: 5.5rem;
+    margin-left: calc(var(--header-width) + var(--side-link-padding) * 2);
+}
+
+header>nav .dropdown {
+    --dropdown-width: 10em;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 10em;
+    width: var(--dropdown-width);
+    height: 100%;
+    z-index: 1;
+    margin-left: 10em;
+    margin-left: var(--dropdown-width);
+    background-color: rgba(0, 0, 0, 0.8);
+    background-image: linear-gradient(to right, #f90 1%, transparent 1%);
+    background-image: linear-gradient(to right, var(--main-color) 1%, transparent 1%);
+    /* box-shadow: -1em 0 5rem 1em rgba(0, 0, 0, 0.8); */
+    text-align: left;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+header>nav .dropdown a {
+    width: 100%;
+}
+
+header>nav li:hover>.dropdown {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+header>nav>ul>li:last-child {
+    position: absolute;
+    bottom: 0;
+    width: 5.5rem;
+    width: calc(var(--header-width) + var(--side-link-padding) * 2);
+}
+
+header>nav>ul>li:last-child>.dropdown {
+    position: fixed;
+}
+
+header li:hover {
+    background: #f90;
+    background: var(--main-color);
+    color: white;
+}
+
+header li:hover ul {
+    color: #f90;
+    color: var(--main-color);
+}
+
+header>nav>ul>li li:hover {
+    background: #f90;
+    background: var(--main-color);
+}
+
+header .material-icons {
+    font-size: 4.5rem;
+    font-size: var(--header-width);
+}
+
+header>nav>a>.material-icons {
+    display: block;
+}
+
+header>nav .dropdown li>a:not(:last-child)::after {
+    content: ">";
+    float: right;
+}
+
+header img {
+    -webkit-filter: drop-shadow(0 0 0.1em rgba(0, 0, 0, 1));
+    filter: drop-shadow(0 0 0.1em rgba(0, 0, 0, 1));
+}
+
+main {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+    padding: 1em;
+    font-family: serif;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: 400;
+    font-style: normal;
+    src: url("https://www.mozilla.org/media/fonts/ZillaSlab-Regular.f9de6143fdfa.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: 700;
+    font-style: normal;
+    src: url("https://www.mozilla.org/media/fonts/ZillaSlab-Bold.8d7f01331d2b.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: 400;
+    font-style: italic;
+    src: url("https://www.mozilla.org/media/fonts/ZillaSlab-RegularItalic.736a1ac1facc.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: 700;
+    font-style: italic;
+    src: url("https://www.mozilla.org/media/fonts/ZillaSlab-BoldItalic.f43bd6198f0e.woff2") format("woff2");
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+    font-family: "Zilla Slab", serif;
+    margin: 0;
+    padding: 0.25em 0;
+}
+
+q {
+    text-align: right;
+}
