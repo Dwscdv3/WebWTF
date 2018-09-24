@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GenderField</title>
+    <style>
+        #container {
+            width: 300px;
+            box-sizing: border-box;
+        }
+        #genderField {
+            --fill-color: white;
+            --stroke-color: black;
+            --selected-color: black;
+            --initial-angle: 945deg;
+            pointer-events: none;
+            animation: appear 2s;
+        }
+        #genderField * {
+            fill: var(--fill-color);
+            stroke: var(--stroke-color);
+            pointer-events: all;
+        }
+        #genderField .hovering {
+            fill: var(--selected-color) !important;
+            stroke: var(--selected-color) !important;
+        }
+        #genderField .activated {
+            fill: var(--selected-color);
+            stroke: var(--selected-color);
+        }
+        #genderField .activated.force-deactivated {
+            fill: var(--fill-color);
+            stroke: var(--stroke-color);
+        }
+        #text {
+            width: 300px;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+            outline: none;
+            font-size: larger;
+            transition: all 0.5s;
+        }
+        #text:focus {
+            border-bottom: 2px solid rgba(0, 0, 255, 0.5);
+        }
+        @keyframes appear {
+            from {
+                transform: scale(0) rotate(0);
+            }
+            to {
+                transform: scale(1) rotate(var(--initial-angle));
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <svg id="genderField" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 100 100">
+            <path id="female"
+                  d="M 10 20 l 10 0 l 0 -15 l 10 0 l 0 15 l 10 0 l 0 10 l -10 0 l 0 10 l -10 0 l 0 -10 l -10 0 Z"
+                  transform="translate(1 49) rotate(45, 25 25)"
+                  data-value="Female" />
+            <path id="male"
+                  d="M 85 15 l -30 0 l 0 10 l 13 0 l -10 10 l 7 7 l 10 -10 l 0 13 l 10 0 Z"
+                  transform="rotate(35, 50 50)"
+                  data-value="Male" />
+            <path id="ring"
+                  data-value="Unknown" />
+        </svg>
+    </div>
+    <div>
+        <input type="text" id="text" placeholder="Or type it down here..." />
+    </div>
+
+    <script>
+        const svg = document.getElementById("genderField");
+        const female = document.getElementById("female");
+        const male = document.getElementById("male");
+        const ring = document.getElementById("ring");
+        const text = document.getElementById("text");
+        const options = [female, male, ring];
+        const initialAnimationDuration = 2000;
+        const initialAngle = 1080 + Math.floor(Math.random() * 360);
+        var currentAngle = initialAngle;
+        var lastDelta = initialAnimationDuration;
+        svg.style.setProperty("--initial-angle", initialAngle + "deg");
+        setPathData();
+        options.forEach(element => element.addEventListener("click", event => {
+            options.forEach(element => element.classList.remove("activated"));
+            event.target.classList.add("activated");
+            ring.classList.add("activated");
+            text.placeholder = event.target.dataset.value;
+        }));
+        options.forEach(element => element.addEventListener("mouseenter", event => {
+            options.forEach(element => element.classList.add("force-deactivated"));
+            event.target.classList.add("hovering");
+            ring.classList.add("hovering");
+        }));
+        options.forEach(element => element.addEventListener("mouseleave", event => {
+            options.forEach(element => element.classList.remove("force-deactivated"));
+            event.target.classList.remove("hovering");
+            ring.classList.remove("hovering");
+        }));
+        setTimeout(() => {
+            svg.style.transform = `rotate(${initialAngle}deg)`;
+            requestAnimationFrame(rotationAnimation);
+        }, initialAnimationDuration);
+
+        function setPathData() {
+            const centerX = 50;
+            const centerY = 50;
+            const outerRadius = 20;
+            const innerRadius = 10;
+            ring.setAttribute("d", `
+                M ${centerX} ${centerY - outerRadius}
+                A ${outerRadius} ${outerRadius} 0 1 0 ${centerX} ${centerY + outerRadius}
+                A ${outerRadius} ${outerRadius} 0 1 0 ${centerX} ${centerY - outerRadius}
+                Z
+                M ${centerX} ${centerY - innerRadius}
+                A ${innerRadius} ${innerRadius} 0 1 1 ${centerX} ${centerY + innerRadius}
+                A ${innerRadius} ${innerRadius} 0 1 1 ${centerX} ${centerY - innerRadius}
+                Z
+            `);
+        }
+        function rotationAnimation(delta) {
+            currentAngle += (delta - lastDelta) / 180;
+            lastDelta = delta;
+            svg.style.transform = `rotate(${currentAngle}deg)`;
+            requestAnimationFrame(rotationAnimation);
+        }
+    </script>
+</body>
+
+</html>
