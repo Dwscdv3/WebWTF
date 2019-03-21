@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WTF is this?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="slideshow">
+        <div class="slideshow-scenes">
+            <div>
+                <div class="perspective">
+                    <svg width="400" height="400" viewBox="-100 -50 400 400">
+                        <defs>
+                            <mask id="keyhole">
+                                <rect width="1000" height="1000" fill="white" />
+                                <circle cx="100" cy="210" r="20" fill="black" />
+                                <path d="M 100 200, l -15 60, l 30 0, Z" fill="black" />
+                            </mask>
+                        </defs>
+                        <path id="ring" d="M 25 250, l 0 -150, a 75 75 0 0 1 150 0, l 0 90, a 12.5 12.5 0 0 1 -25 0, l 0 -10, a 10 10 0 0 0 0 -20, l 0 -60, a 50 50 0 0 0 -100 0, l 0 150, Z" />
+                        <rect id="body" y="150" width="200" height="150" rx="20" ry="20" fill="rgba(0, 0, 0, 0.5)" mask="url(#keyhole)" />
+                    </svg>
+                </div>
+            </div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+        </div>
+    </section>
+    <script src="slideshow.js"></script>
+</body>
+
+</html>
