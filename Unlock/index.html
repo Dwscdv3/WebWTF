@@ -12,18 +12,37 @@
 <body>
     <section class="slideshow">
         <div class="slideshow-scenes">
-            <div>
+            <div id="unlock">
+                <div id="bg"></div>
+                <div id="bar-1" class="bar"></div>
+                <div id="bar-2" class="bar"></div>
                 <div class="perspective">
                     <svg width="400" height="400" viewBox="-100 -50 400 400">
                         <defs>
                             <mask id="keyhole">
                                 <rect width="1000" height="1000" fill="white" />
                                 <circle cx="100" cy="210" r="20" fill="black" />
-                                <path d="M 100 200, l -15 60, l 30 0, Z" fill="black" />
+                                <path fill="black"
+                                      d="M 100 200
+                                         l -15 60
+                                         l 30 0
+                                         Z" />
                             </mask>
                         </defs>
-                        <path id="ring" d="M 25 250, l 0 -150, a 75 75 0 0 1 150 0, l 0 90, a 12.5 12.5 0 0 1 -25 0, l 0 -10, a 10 10 0 0 0 0 -20, l 0 -60, a 50 50 0 0 0 -100 0, l 0 150, Z" />
-                        <rect id="body" y="150" width="200" height="150" rx="20" ry="20" fill="rgba(0, 0, 0, 0.5)" mask="url(#keyhole)" />
+                        <path id="ring"
+                              fill="white"
+                              d="M 25 250
+                                 l 0 -150
+                                 a 75 75 0 0 1 150 0
+                                 l 0 90
+                                 a 12.5 12.5 0 0 1 -25 0
+                                 l 0 -10
+                                 a 10 10 0 0 0 0 -20
+                                 l 0 -60
+                                 a 50 50 0 0 0 -100 0
+                                 l 0 150
+                                 Z" />
+                        <rect id="body" y="150" width="200" height="150" rx="20" ry="20" fill="#fc0" mask="url(#keyhole)" />
                     </svg>
                 </div>
             </div>
