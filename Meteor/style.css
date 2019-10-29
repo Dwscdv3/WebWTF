@@ -1,0 +1,130 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: black;
+}
+
+.meteor {
+    position: relative;
+}
+
+.meteor-transform {
+    height: 100%;
+    animation: test 10s linear forwards;
+}
+
+.meteor>* {
+    text-align: center;
+}
+
+.meteor-head {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    transform: translate(0, -50%);
+    background: transparent;
+}
+
+.meteor-handle {
+    transform: scale(0);
+    transition: transform 0.25s;
+}
+.meteor-head:hover .meteor-handle {
+    transform: scale(1);
+}
+
+.meteor-gleam {
+    --gleam-size: 25px;
+    --gleam-thickness: 2.5px;
+    position: relative;
+    width: calc(var(--gleam-size) * 2);
+    height: calc(var(--gleam-size) * 2);
+    animation: spin 10s linear infinite;
+}
+
+.meteor-gleam-transform {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.meteor-gleam-animation {
+    position: relative;
+    animation: blink 1.2s ease-in-out infinite;
+}
+
+.meteor-gleam>* {
+    position: absolute;
+    border: solid transparent;
+}
+
+.meteor-gleam-h-top {
+    bottom: 50%;
+    border-width: 0 var(--gleam-size) var(--gleam-thickness) var(--gleam-size);
+    border-bottom-color: white;
+}
+.meteor-gleam-h-bottom {
+    top: 50%;
+    border-width: var(--gleam-thickness) var(--gleam-size) 0 var(--gleam-size);
+    border-top-color: white;
+}
+.meteor-gleam-v-left {
+    right: 50%;
+    border-width: var(--gleam-size) var(--gleam-thickness) var(--gleam-size) 0;
+    border-right-color: white;
+}
+.meteor-gleam-v-right {
+    left: 50%;
+    border-width: var(--gleam-size) 0 var(--gleam-size) var(--gleam-thickness);
+    border-left-color: white;
+}
+
+.meteor-stripe {
+    display: flex;
+    width: 2px;
+    width: fit-content;
+    height: 100%;
+    margin: auto;
+}
+
+.meteor-stripe-content {
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, white);
+}
+
+#meteor {
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes blink {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes test {
+    from { transform: translateY(-110%); }
+    to { transform: translateY(+50%); }
+}
