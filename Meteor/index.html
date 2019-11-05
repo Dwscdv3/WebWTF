@@ -10,8 +10,15 @@
 </head>
 
 <body>
+    <div id="bg" class="bg">
+        <div id="bg-whole" class="bg-whole"></div>
+        <div id="bg-splitted" class="bg-splitted">
+            <div id="bg-left" class="bg-left"></div>
+            <div id="bg-right" class="bg-right"></div>
+        </div>
+    </div>
     <div id="meteor" class="meteor">
-        <div class="meteor-transform">
+        <div class="meteor-effects">
             <div class="meteor-stripe">
                 <div class="meteor-stripe-content"></div>
             </div>
@@ -30,6 +37,23 @@
             </div>
         </div>
     </div>
+    <div id="explosion" hidden></div>
+    <div id="credit">
+        <h1>Illustrations</h1>
+        <p><a href="https://www.pixiv.net/artworks/18362446" target="_blank">Pixiv 18362446</a></p>
+        <p><a href="https://www.pixiv.net/artworks/19994835" target="_blank">Pixiv 19994835</a></p>
+        <p><a href="https://www.pixiv.net/artworks/55749841" target="_blank">Pixiv 55749841</a></p>
+        <h1>Music</h1>
+        <p>君の銀の庭 (Originally Performed by Kalafina 「劇場版 魔法少女まどか☆マギカ[新編]叛逆の物語」より)<br>
+            by <strong>オルゴール ミドリ</strong></p>
+        <h1>Animation</h1>
+        <p>by <strong>Dwscdv3</strong></p>
+    </div>
+    <div id="play-button">
+        <div id="play-icon">▶</div>
+    </div>
+    <audio id="bgm" src="3.mp3" hidden></audio>
+    <script src="meteor.js"></script>
 </body>
 
 </html>
