@@ -9,14 +9,16 @@
 
 // https://stackoverflow.com/a/71316630
 
+try {
+
 let ctx = new AudioContext();
 
-let bufferSize = 2 * ctx.sampleRate, 
-    emptyBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate), 
-    output = emptyBuffer.getChannelData(0);
+let bufferSize = 2 * ctx.sampleRate;
+let emptyBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+let output = emptyBuffer.getChannelData(0);
 
 for (let i = 0; i < bufferSize; i++) 
-    output[i] = 0;
+  output[i] = 0;
 
 let source = ctx.createBufferSource();
 source.buffer = emptyBuffer;
@@ -31,9 +33,13 @@ audio.controls = true;
 document.body.append(audio);
 
 document.addEventListener("touchend", () => {
-    if (ctx.state != "running")
-        ctx.resume();
+  if (ctx.state != "running")
+    ctx.resume();
 };
+
+} catch (ex) {
+  alert(ex);
+}
 
     </script>
   </body>
