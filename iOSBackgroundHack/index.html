@@ -5,7 +5,6 @@
     <title>iOS Background Hack</title>
   </head>
   <body>
-    <audio id="audio" controls loop></audio>
     <script>
 
 // https://stackoverflow.com/a/71316630
@@ -26,8 +25,10 @@ source.loop = true;
 let node = ctx.createMediaStreamDestination();
 source.connect(node);
 
-let audio = document.getElementById("audio");
+let audio = document.createElement("audio");
 audio.srcObject = node.stream;
+audio.controls = true;
+document.body.append(audio);
 
 document.addEventListener("touchend", () => {
     if (audioCtx.state != "running")
