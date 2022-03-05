@@ -28,7 +28,11 @@ source.connect(node);
 
 let audio = document.getElementById("audio");
 audio.srcObject = node.stream;
-audio.play();
+
+document.addEventListener("touchend", () => {
+    if (audioCtx.state != "running")
+        ctx.resume();
+};
 
     </script>
   </body>
