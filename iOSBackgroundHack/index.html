@@ -31,7 +31,7 @@ audio.controls = true;
 document.body.append(audio);
 
 document.addEventListener("touchend", () => {
-    if (audioCtx.state != "running")
+    if (ctx.state != "running")
         ctx.resume();
 };
 
