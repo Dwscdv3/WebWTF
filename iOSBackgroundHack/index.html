@@ -9,8 +9,6 @@
 
 // https://stackoverflow.com/a/71316630
 
-try {
-
 let ctx = new AudioContext();
 
 let bufferSize = 2 * ctx.sampleRate;
@@ -35,11 +33,7 @@ document.body.append(audio);
 document.addEventListener("touchend", () => {
   if (ctx.state != "running")
     ctx.resume();
-};
-
-} catch (ex) {
-  alert(ex);
-}
+});
 
     </script>
   </body>
