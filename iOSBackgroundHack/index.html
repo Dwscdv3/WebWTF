@@ -5,29 +5,28 @@
     <title>iOS Background Hack</title>
   </head>
   <body>
-    <audio src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" controls></audio>
+    <audio src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" controls loop></audio>
     <script>
 
 // https://stackoverflow.com/a/71316630
 
 let ctx = new AudioContext();
 
-let bufferSize = 2 * ctx.sampleRate;
-let emptyBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-let output = emptyBuffer.getChannelData(0);
+const oscillator = audioCtx.createOscillator();
+const gain = audioCtx.createGain();
+const stream = ctx.createMediaStreamDestination();
 
-for (let i = 0; i < bufferSize; i++) 
-  output[i] = 0;
+oscillator.connect(gain);
+gain.connect(stream);
 
-let source = ctx.createBufferSource();
-source.buffer = emptyBuffer;
-source.loop = true;
+oscillator.type = 'sine';
+oscillator.frequency.value = 440;
+oscillator.start();
 
-let node = ctx.createMediaStreamDestination();
-source.connect(node);
+gain.gain.value = 0.2;
 
 let audio = document.createElement("audio");
-audio.srcObject = node.stream;
+audio.srcObject = stream.stream;
 audio.controls = true;
 document.body.append(audio);
 
