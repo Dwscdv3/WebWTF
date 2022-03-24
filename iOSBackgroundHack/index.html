@@ -5,33 +5,16 @@
     <title>iOS Background Hack</title>
   </head>
   <body>
-    <audio src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" controls loop></audio>
+    <audio src="https://upload.wikimedia.org/wikipedia/commons/5/50/Sine_wave_440.ogg" controls loop></audio>
     <script>
 
 const audio = document.createElement('audio');
-const ctx = new OfflineAudioContext(1, 44000, 44100);
-const oscillator = ctx.createOscillator();
-const gain = ctx.createGain();
-const source = ctx.createBufferSource();
+const ctx = new AudioContext();
+const stream = ctx.createMediaStreamDestination();
 
-audio.srcObject = source;
+audio.srcObject = stream.stream;
 audio.controls = true;
 document.body.append(audio);
-
-oscillator.connect(gain);
-gain.connect(ctx.destination);
-
-oscillator.type = 'sine';
-oscillator.frequency.value = 440;
-oscillator.start();
-
-gain.gain.value = 0.2;
-
-source.loop = true;
-
-ctx.startRendering().then(buffer => {
-  ctx.buffer = buffer;
-});
 
     </script>
   </body>
