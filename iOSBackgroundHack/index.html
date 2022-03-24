@@ -5,33 +5,6 @@
     <title>iOS Background Hack</title>
   </head>
   <body>
-    <script>
-
-const audio = document.createElement('audio');
-const ctx = new AudioContext();
-const bufferSize = 44000;
-const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-const data = buffer.getChannelData(0);
-const source = ctx.createBufferSource();
-const stream = ctx.createMediaStreamDestination();
-
-for (let i = 0; i < bufferSize; i++) 
-  data[i] = Math.sin(Math.PI * 2 / 440 * i);
-
-source.buffer = buffer;
-source.loop = true;
-source.connect(stream);
-source.start();
-
-audio.srcObject = stream.stream;
-audio.controls = true;
-document.body.append(audio);
-
-document.addEventListener('touchend', () => {
-  if (ctx.state != 'running')
-    ctx.resume();
-});
-
-    </script>
+    <audio controls loop src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA"></audio>
   </body>
 </html>
