@@ -8,12 +8,10 @@
     <audio src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" controls loop></audio>
     <script>
 
-// https://stackoverflow.com/a/71316630
-
 let ctx = new AudioContext();
 
-const oscillator = audioCtx.createOscillator();
-const gain = audioCtx.createGain();
+const oscillator = ctx.createOscillator();
+const gain = ctx.createGain();
 const stream = ctx.createMediaStreamDestination();
 
 oscillator.connect(gain);
@@ -25,13 +23,13 @@ oscillator.start();
 
 gain.gain.value = 0.2;
 
-let audio = document.createElement("audio");
+let audio = document.createElement('audio');
 audio.srcObject = stream.stream;
 audio.controls = true;
 document.body.append(audio);
 
-document.addEventListener("touchend", () => {
-  if (ctx.state != "running")
+document.addEventListener('touchend', () => {
+  if (ctx.state != 'running')
     ctx.resume();
 });
 
