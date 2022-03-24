@@ -26,6 +26,11 @@ audio.srcObject = stream.stream;
 audio.controls = true;
 document.body.append(audio);
 
+document.addEventListener('touchend', () => {
+  if (ctx.state != 'running')
+    ctx.resume();
+});
+
     </script>
   </body>
 </html>
