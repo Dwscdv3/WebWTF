@@ -21,6 +21,7 @@ for (let i = 0; i < bufferSize; i++)
 source.buffer = buffer;
 source.loop = true;
 source.connect(stream);
+source.start();
 
 audio.srcObject = stream.stream;
 audio.controls = true;
