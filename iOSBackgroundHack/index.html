@@ -8,14 +8,18 @@
     <audio src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" controls loop></audio>
     <script>
 
-let ctx = new AudioContext();
-
+const audio = document.createElement('audio');
+const ctx = new OfflineAudioContext(1, 44000, 44100);
 const oscillator = ctx.createOscillator();
 const gain = ctx.createGain();
-const stream = ctx.createMediaStreamDestination();
+const source = ctx.createBufferSource();
+
+audio.srcObject = source;
+audio.controls = true;
+document.body.append(audio);
 
 oscillator.connect(gain);
-gain.connect(stream);
+gain.connect(ctx.destination);
 
 oscillator.type = 'sine';
 oscillator.frequency.value = 440;
@@ -23,14 +27,10 @@ oscillator.start();
 
 gain.gain.value = 0.2;
 
-let audio = document.createElement('audio');
-audio.srcObject = stream.stream;
-audio.controls = true;
-document.body.append(audio);
+source.loop = true;
 
-document.addEventListener('touchend', () => {
-  if (ctx.state != 'running')
-    ctx.resume();
+ctx.startRendering().then(buffer => {
+  ctx.buffer = buffer;
 });
 
     </script>
